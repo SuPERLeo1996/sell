@@ -1,13 +1,11 @@
-package com.imooc.dataobject;
+package com.imooc.dto;
 
+import com.imooc.dataobject.OrderDetail;
 import com.imooc.enums.OrderStatusEnum;
 import com.imooc.enums.PayStatusEnum;
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -17,12 +15,9 @@ import java.util.List;
  * @Date: 2018/8/19
  * @Description:
  */
-@Entity
 @Data
-@DynamicUpdate
-public class OrderMaster {
+public class OrderDTO {
     //订单id
-    @Id
     private String orderId;
 
     //买家名字
@@ -52,5 +47,6 @@ public class OrderMaster {
     //更新时间
     private Date updateTime;
 
+    List<OrderDetail> orderDetailList;
 
 }
