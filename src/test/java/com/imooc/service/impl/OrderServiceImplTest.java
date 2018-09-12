@@ -3,6 +3,7 @@ package com.imooc.service.impl;
 import com.imooc.dataobject.OrderDetail;
 import com.imooc.dto.OrderDTO;
 import com.imooc.enums.OrderStatusEnum;
+import com.imooc.enums.PayStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class OrderServiceImplTest {
 
     private final String BUYER_OPENID = "110110";
 
-    private final String ORDER_ID = "153476687703038418";
+    private final String ORDER_ID = "153658807746920943";
 
     @Test
     public void create() throws Exception {
@@ -85,10 +86,18 @@ public class OrderServiceImplTest {
 
     @Test
     public void finish() throws Exception {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(),result.getOrderStatus());
+
     }
 
     @Test
     public void paid() throws Exception {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
+
     }
 
 }
